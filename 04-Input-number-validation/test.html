@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Input</title>
+  <style>
+  .error{
+    border: 2px solid red;
+  }</style>
+</head>
+<body>
+  <form id="form1" onsubmit="return greaterThan100()">
+    <span>Numbers</span>
+    <input id="number-only" onkeyup="checkNumber()"></input> <br/>
+    <span>Not null</span>
+    <input id="not-null" onblur="checkNull()"></input> <br/>
+    <button type="submit">Send</button>
+  </form>
+  <div id="validation"></div>
+  <script>
+    function checkNumber() {
+      var input = document.getElementById("number-only")
+      if (isNaN(input.value)) {
+        input.classList.add("error")
+      } else {
+        input.classList.remove("error")
+      }
+    }
+    function checkNull() {
+      var input = document.getElementById("not-null")
+      if (!input.value) {
+        input.classList.add("error")
+      } else {
+        input.classList.remove("error")
+      }
+    }
+    function greaterThan100() {
+      var input = document.getElementById("number-only")
+      var result = document.getElementById("validation")
+      if (!input.value) {
+        validation.innerHTML = ""
+      }
+      else if (input.value > 100) {
+        validation.innerHTML = "Maior que 100"
+      } else {
+        validation.innerHTML = "Menor que 100"
+      }
+      return false
+    }
+  </script>
+</body>
+</html>

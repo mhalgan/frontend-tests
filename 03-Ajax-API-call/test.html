@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>API</title>
+    <style>
+      .card {
+        height: 200px;
+        width: 200px;
+        float: left;
+        margin: 3px;
+      }
+      .completed {
+        border: 3px solid lime;
+      }
+      .todo {
+        border: 3px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          type: "GET",
+          url: "https://jsonplaceholder.typicode.com/todos",
+          dataType: "json",
+          success: function(data) {
+            var div;
+            for (var i in data) {
+              div = document.createElement("div");
+              div.classList.add("card");
+              div.append(data[i].title);
+              data[i].completed
+                ? div.classList.add("completed")
+                : div.classList.add("todo");
+
+              $("#content").append(div);
+              console.log(data[i]);
+            }
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
