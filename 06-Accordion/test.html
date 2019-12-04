@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Accordion</title>
+    <style>
+      .accordion {
+        background-color: gainsboro;
+        padding: 10px;
+        margin-bottom: 3px;
+      }
+      .accordion:hover {
+        cursor: pointer;
+      }
+      .active {
+        background-color: gray;
+        cursor: pointer;
+      }
+      .content {
+        padding: 10px;
+        display: none;
+        margin-bottom: 3px;
+      }
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion">Item 1</div>
+    <div class="content">Content 1</div>
+    <div class="accordion">Item 2</div>
+    <div class="content">Content 2</div>
+    <div class="accordion">Item 3</div>
+    <div class="content">Content 3</div>
+    <script>
+      var accordion = document.getElementsByClassName("accordion");
+      var lastClicked;
+      for (var i = 0; i < accordion.length; i++) {
+        accordion[i].addEventListener("click", function() {
+          if (lastClicked) {
+            lastClicked.classList.remove("active");
+            lastClicked.nextElementSibling.classList.remove("show");
+          }
+          if (this !== lastClicked) {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            content.classList.toggle("show");
+            lastClicked = this;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

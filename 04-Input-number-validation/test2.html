@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Input</title>
+  <style>
+  .error{ border: 3px solid red;
+  }</style>
+</head>
+<body>
+  <form>
+    <span>Name:</span>
+    <input id="name" onblur="checkNull('name')"></form>
+    <span>Age:</span>
+    <input id="age" onkeyup="checkNumber()"></form>
+  </form>
+  <script>
+    function checkNull(el) {
+      var element = document.getElementById(el)
+      if (!element.value) {
+        element.className = "error"
+      } else {
+        element.className = ""
+      }
+    }
+
+    function checkNumber() {
+      var element = document.getElementById('age')
+      if (isNaN(element.value)) {
+        element.className = "error"
+      } else {
+        element.className = ""
+      }
+    }
+  </script>
+</body>
+</html>
