@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Ajax</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .card {
+        border: 3px solid black;
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin: 2px;
+        padding: 2px;
+      }
+      .done {
+        border: 3px solid lime;
+      }
+      .notDone {
+        border: 3px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script>
+      $(document).ready(() => {
+        $.ajax({
+          url: "https://jsonplaceholder.typicode.com/todos",
+          type: "get",
+          dataType: "json",
+          success: data => {
+            let card;
+            for (var i in data) {
+              console.log(data[i]);
+              card = document.createElement("div");
+              card.append(data[i].title);
+              card.classList.add("card");
+              if (data[i].completed) {
+                card.classList.add("done");
+              } else {
+                card.classList.add("notDone");
+              }
+              $("#content").append(card);
+            }
+          },
+          error: e => {
+            console.log(e);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
