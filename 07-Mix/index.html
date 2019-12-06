@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mix</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+  </head>
+  <body>
+    <button onclick="toggleModal(true)">Modal</button>
+    <div class="overlay" id="overlay">
+      <div class="content">
+        <div class="header">
+          <span class="close" onclick="toggleModal(false)">&times;</span>
+        </div>
+        <div class="row">
+          <div class="column">1</div>
+          <div class="column">2</div>
+          <div class="column">3</div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <script>
+      var overlay = document.getElementById("overlay");
+      function toggleModal(show) {
+        
+        overlay.style.display = show ? "flex" : "none";
+      }
+
+      window.onclick = function(event) {
+        if (event.target == overlay) {
+          overlay.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
